@@ -1,0 +1,28 @@
+{
+  "name": "v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "engines": {
+    "node": "9.2.0",
+    "npm": "5.5.1 "
+  },
+  "scripts": {
+    "start": "node ./config/server"
+  },
+  "keywords": [],
+  "author": "Marcin Gryczon",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bootstrap": "4.0.0-beta.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "jqueryui": "^1.11.1",
+    "mongoose": "^4.13.3",
+    "popper.js": "1.12.9"
+  },
+  "repository": "https://github.com/Tsogodar/Tibia.git"
+}

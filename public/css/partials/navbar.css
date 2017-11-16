@@ -1,0 +1,11 @@
+.navbar {
+    background-color: black;
+}
+
+.navbar-brand{
+    font-size: 20pt;
+}
+
+.navbar-brand,.navbar-brand:hover, .nav-link, .nav-link:hover {
+    color: white;
+}

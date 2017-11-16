@@ -1,0 +1,46 @@
+<div class="foldersSection mb-5">
+    {{#each openedFolder}}
+        <h4>
+            {{#if copies}}
+                {{name}}({{copies}})
+            {{else}}
+                {{name}}
+            {{/if}}
+            <small>
+                <i class="fa fa-pencil" aria-hidden="true" data-toggle="modal"
+                   data-target="#changeFolderNameModal"></i>
+            </small>
+        </h4>
+    {{/each}}
+    {{#if folders}}
+        <h3>Foldery</h3>
+    {{/if}}
+    {{#each folders}}
+        <div class="folder">
+            {{#if copies}}
+                <div class="folderTitle">{{name}}({{copies}})</div>
+            {{else}}
+                <div class="folderTitle">{{name}}</div>
+            {{/if}}
+            <div class="folderMenu">
+                <div class="actions">
+                    <a href="/folder/share/id">
+                        <i class="fa fa-share-alt" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="actions">
+                    <a href="/folder/{{_id}}">
+                        <i class="fa fa-folder-open" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="actions">
+                    <a href="/folder/remove/{{_id}}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <span class={{_id}}></span>
+        </div>
+    {{/each}}
+</div>
+

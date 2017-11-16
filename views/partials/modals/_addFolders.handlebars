@@ -1,0 +1,26 @@
+<div class="modal fade" id="addFolderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nowy folder</h5>
+            </div>
+            <div class="modal-body">
+                {{#if parent}}
+                <form method="post" action="/folder/add/{{parent}}">
+                {{else}}
+                <form method="post" action="/folder/add">
+                {{/if}}
+                <input class="form-control" id='nameInput' type="text" name="newFolderName" required
+                       autocomplete="off"
+                       placeholder="Podaj nazwę">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                    <input type="submit" class="btn btn-primary" value="Dodaj">
+                </div>
+            </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="modal fade" id="changeFolderNameModal" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Zmień nazwę</h5>
+            </div>
+            <div class="modal-body">
+                {{#if parent}}
+                <form method="post" action="/folder/rename/{{#each openedFolder}}{{_id}}{{/each}}/{{parent}}">
+                {{else}}
+                <form method="post" action="/folder/rename/{{#each openedFolder}}{{_id}}{{/each}}">
+                {{/if}}
+                <input class="form-control" value="{{#each openedFolder}}{{name}}{{/each}}" type="text"
+                       name="renameInput" required
+                       autocomplete="off"
+                       placeholder="Podaj nową nazwę">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                    <input type="submit" class="btn btn-primary" value="Ok">
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

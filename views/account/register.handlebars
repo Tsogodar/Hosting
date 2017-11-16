@@ -1,0 +1,30 @@
+<div class="mt-5">
+    <div class="col-md-3 mx-auto">
+        <div class="card card-body">
+            <h3 class="text-center">Rejestracja</h3>
+            <form action="/users/register" method="post" >
+                <div class="form-group">
+                    <label for="name">Imię</label>
+                    <input type="text" class="form-control" name="nameInput" required value="{{name}}">
+                </div>
+                <div class="form-group">
+                    <label for="surname">Nazwisko</label>
+                    <input type="text" class="form-control" name="surnameInput" required value="{{name}}">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="form-control" name="email" required value="{{email}}">
+                </div>
+                <div class="form-group">
+                    <label for="password">Hasło</label>
+                    <input type="password" class="form-control" name="password" required value="{{password}}">
+                </div>
+                <div class="form-group">
+                    <label for="password2">Powtórz hasło</label>
+                    <input type="password" class="form-control" name="password2" required value="{{password2}}">
+                </div>
+                <button type="submit" class="registerBtn btn btn-lg btn-warning float-right ">Zarejestruj</button>
+            </form>
+        </div>
+    </div>
+</div>

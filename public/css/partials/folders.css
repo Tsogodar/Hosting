@@ -1,0 +1,49 @@
+.folder {
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.folder:hover{
+    border-color: orange;
+}
+
+.folderTitle {
+    padding: 7px 10px;
+    font-size: 16pt;
+}
+
+.folderMenu {
+    opacity: 0;
+    background-color: rgba(255, 150, 0, .8);
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: -43px;
+    position: relative;
+}
+
+.folder, .folderTitle,.actions {
+    user-select: none;
+}
+
+.actions{
+    height: 100%;
+    width: auto;
+    font-size: 20pt;
+    display: inline-block;
+    margin: 7px 9%;
+}
+
+.actions a{
+    display: none;
+    color: white;
+}
+
+.actions:hover,.folder:hover{
+    cursor:pointer;
+}

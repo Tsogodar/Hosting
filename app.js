@@ -2,7 +2,7 @@ const express =require('express');
 const path=require('path');
 const bodyParser =require('body-parser');
 const exphbs =require('express-handlebars');
-const db=require('./config/database');
+const db=require('./config/database').dbConnect();
 const app=express();
 
 app.use(bodyParser.urlencoded({extended:false}));
@@ -18,7 +18,6 @@ app.use('/bootstrap',express.static(path.join(__dirname,'node_modules/bootstrap/
 app.use('/jquery',express.static(path.join(__dirname,'node_modules/jquery/dist')));
 app.use('/jqueryui',express.static(path.join(__dirname,'node_modules/jqueryui')));
 app.use('/fontawesome',express.static(path.join(__dirname,'node_modules/font-awesome')));
-app.use('/popper',express.static(path.join(__dirname,'node_modules/popper.js/dist')));
 
 //routings
 app.use('/',require('./controllers/index'));

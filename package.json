@@ -22,7 +22,6 @@
     "jquery": "^3.2.1",
     "jqueryui": "^1.11.1",
     "mongoose": "^4.13.3",
-    "popper.js": "1.12.9"
   },
   "repository": "https://github.com/Tsogodar/Tibia.git"
 }

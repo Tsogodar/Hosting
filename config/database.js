@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 module.exports = {
     dbConnect: ()=>{
         if(process.env.NODE_ENV==='production'){
-            mongoose.connect('mongodb://marcin:dyplo@ds111066.mlab.com:11066/dyplo-prod', {
+            mongoose.connect(`mongodb://${process.env.dbLogin}:${process.env.dbPass}@ds111066.mlab.com:11066/dyplo-prod`, {
                 useMongoClient: true
             }).then(() => {
                 console.log('MongoDB connected mLab');

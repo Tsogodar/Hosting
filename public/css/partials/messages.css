@@ -1,0 +1,13 @@
+.message{
+    padding: 5px;
+    text-align: center;
+}
+
+.message i{
+    color: black;
+    margin-left: 5px;
+}
+
+.link{
+    display: inline-block;
+}

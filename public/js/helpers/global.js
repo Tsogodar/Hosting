@@ -1,8 +1,8 @@
 $(document).ready(function () {
     // disable context menu
-    $('body').contextmenu(function() {
-        return false;
-    });
+    // $('body').contextmenu(function() {
+    //     return false;
+    // });
 
     //disable text selecting
     $('body').css('user-select', 'none');

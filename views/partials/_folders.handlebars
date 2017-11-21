@@ -17,24 +17,33 @@
     {{/if}}
     {{#each folders}}
         <div class="folder">
-            {{#if copies}}
-                <div class="folderTitle">{{name}}({{copies}})</div>
-            {{else}}
-                <div class="folderTitle">{{name}}</div>
-            {{/if}}
+            <div class="folderTitle">
+                <i class="fa fa-folder" aria-hidden="true"></i>
+                {{#if copies}}
+                    {{name}}({{copies}})
+                {{else}}
+                    {{name}}
+                {{/if}}
+            </div>
             <div class="folderMenu">
-                <div class="actions">
-                    <a href="/folder/share/id">
+                <div class="folderActions">
+                    {{#if shared}}
+                        <a href="/folder/unshare/{{_id}}" title="Anuluj udostępnianie">
+                            <i class="fa fa-ban" aria-hidden="true"></i>
+                        </a>
+                    {{else}}
+                    <a href="/folder/share/{{_id}}" title="Udostępnij">
                         <i class="fa fa-share-alt" aria-hidden="true"></i>
                     </a>
+                    {{/if}}
                 </div>
-                <div class="actions">
-                    <a href="/folder/{{_id}}">
+                <div class="folderActions">
+                    <a href="/folder/{{_id}}" title="Otwórz">
                         <i class="fa fa-folder-open" aria-hidden="true"></i>
                     </a>
                 </div>
-                <div class="actions">
-                    <a href="/folder/remove/{{_id}}">
+                <div class="folderActions">
+                    <a href="/folder/remove/{{_id}}" title="Usuń">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </a>
                 </div>

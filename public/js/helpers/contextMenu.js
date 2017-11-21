@@ -43,4 +43,7 @@ $(document).ready(function () {
     $('#moveFolderModal').on('hide.bs.modal', function (e) {
         $('select').html('');
     })
+    $('#showModal').modal({
+        show:true
+    })
 });

@@ -1,0 +1,21 @@
+{{#if share_msg}}
+    <div class="alert-success">
+        <div class="message">Udostępniono pod adresem:
+            <div class="link">
+                <b>{{share_msg}}</b>
+            </div>
+            <i class="fa fa-clipboard" onclick="copyLink('b')"></i>
+        </div>
+    </div>
+{{/if}}
+
+{{#if unshare_msg}}
+    <script>
+        removeMessage();
+    </script>
+    <div class="alert-success">
+        <div class="message">
+            {{unshare_msg}}
+        </div>
+    </div>
+{{/if}}

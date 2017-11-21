@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const folderModel = require('../models/Folder');
+const fileModel = require('../models/File');
+const domain=require('../config/domain').getDomain();
+const shortId = require('shortid');
 const {checkFolderName} = require('../helpers/checkFolderName');
 
-
+//add new folder
 router.post('/add/:parent?', checkFolderName, (req, res) => {
     let newFolder = {
         owner: "cinek",
@@ -31,6 +34,7 @@ router.post('/add/:parent?', checkFolderName, (req, res) => {
     }));
 });
 
+//open folder
 router.get('/:id', (req, res) => {
     if (req.xhr) {
         folderModel.xhr(req.params.id, (folder => {
@@ -39,21 +43,23 @@ router.get('/:id', (req, res) => {
     } else {
         folderModel.openFolder(req.params.id, 'cinek', (folders => {
             folderModel.openedFolder(req.params.id, (openedFolder) => {
-                // folderModel.findParents(req.params.id, (parents) => {
                 folderModel.findAllFolders('cinek', (allFolders) => {
-                    res.render('files/show', {
-                        folders: folders,
-                        openedFolder: openedFolder,
-                        parent: req.params.id,
-                        allFolders: allFolders,
+                    fileModel.findFiles('cinek', req.params.id, (error, files) => {
+                        res.render('main/show', {
+                            folders: folders,
+                            openedFolder: openedFolder,
+                            parent: req.params.id,
+                            allFolders: allFolders,
+                            files: files
+                        });
                     });
                 })
-                // });
             })
         }))
     }
 });
 
+//move folder via drag&drop
 router.post('/move/:movedId/:moveTo', (req, res) => {
     const move = {
         movedId: req.params.movedId,
@@ -66,19 +72,16 @@ router.post('/move/:movedId/:moveTo', (req, res) => {
     })
 });
 
+//remove folder
 router.get('/remove/:id', (req, res) => {
     folderModel.removeFolder(req.params.id, (deleted) => {
         if (deleted) {
-            // if (req.params.parent !== undefined) {
-            //     res.redirect(`/folder/${req.params.parent}`);
-            // } else {
-            //     res.redirect('/');
-            // }
-                res.redirect('back');
+            res.redirect('back');
         }
     });
 });
 
+//rename folder
 router.post('/rename/:id/:parent?', (req, res) => {
     folderModel.renameFolder(req.params.id, req.body.renameInput, (renamed) => {
         if (renamed) {
@@ -91,6 +94,7 @@ router.post('/rename/:id/:parent?', (req, res) => {
     });
 });
 
+//move folder via context menu
 router.post('/destination/:id', (req, res) => {
     const move = {
         movedId: req.body.destination,
@@ -98,6 +102,28 @@ router.post('/destination/:id', (req, res) => {
     };
     folderModel.moveFolder(move.movedId, move.moveTo, (err, moved) => {
         if (moved) {
+            res.redirect('back');
+        }
+    })
+});
+
+
+//share folder
+router.get('/share/:id', (req, res) => {
+    let shareLink=shortId.generate();
+    folderModel.share(req.params.id, shareLink, (shared) => {
+        if(shared){
+            req.flash('share_msg',`${domain.protocol}://${domain.name}/shared/${shareLink}`)
+            res.redirect('back');
+        }
+    })
+});
+
+//unshare folder
+router.get('/unshare/:id', (req, res) => {
+    folderModel.unshare(req.params.id, (unshared) => {
+        if(unshared){
+            req.flash('unshare_msg',`Anulowano udostępnianie`)
             res.redirect('back');
         }
     })

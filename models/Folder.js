@@ -16,6 +16,9 @@ const Folder = module.exports = mongoose.model('folder', FolderSchema);
 
 module.exports = {
 
+    //model instance
+    Folder:Folder,
+
     //add new folder
     addFolder: (newFolder, callback) => {
         new Folder(newFolder).save(callback);
@@ -160,7 +163,33 @@ module.exports = {
         });
     },
 
-    //xhr call for context menu
+    //share folder
+    share:(folderId,shareLink,callback)=>{
+      Folder.update({
+          _id: folderId
+      }, {
+          $set: {
+              'shared': true,
+              'sharedLink': shareLink,
+              'sharedDate': Date.now()
+          }
+      }).then(callback)
+    },
+
+    //unshare folder
+    unshare:(folderId,callback)=>{
+      Folder.update({
+          _id:folderId
+      },{
+          $set:{
+              'shared': null,
+              'sharedLink': null,
+              'sharedDate': null
+          }
+      }).then(callback)
+    },
+
+    //xhr call via context menu
     xhr: (folderId, callback) => {
         module.exports.level(folderId, callback)
     }

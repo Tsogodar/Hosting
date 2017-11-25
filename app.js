@@ -49,4 +49,13 @@ app.use('/folder',require('./controllers/folder'));
 app.use('/file',require('./controllers/file'));
 app.use('/shared',require('./controllers/share'));
 
+app.use((req,res)=>{
+   let error=new Error();
+   error.status=404;
+   res.render('error/error',{
+       header:'404',
+       message:'Żądany zasób nie został znaleziony'
+   })
+});
+
 module.exports=app;

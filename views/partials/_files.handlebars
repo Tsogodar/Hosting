@@ -13,9 +13,15 @@
                     </a>
                 </div>
                 <div class="fileActions">
-                    <a href="/shared/{{_id}}" title="Udostępnij">
-                        <i class="fa fa-share-alt" aria-hidden="true"></i>
-                    </a>
+                    {{#if metadata.shared}}
+                        <a href="/shared/unshare/{{_id}}" title="Anuluj udostępnianie">
+                            <i class="fa fa-ban" aria-hidden="true"></i>
+                        </a>
+                    {{else}}
+                        <a href="/shared/share/{{_id}}" title="Udostępnij">
+                            <i class="fa fa-share-alt" aria-hidden="true"></i>
+                        </a>
+                    {{/if}}
                 </div>
                 <div class="fileActions">
                     <a href="/folder/{{_id}}" title="Szczegóły">

@@ -5,7 +5,6 @@ const FolderSchema = new Schema({
     owner: String,
     name: String,
     shared: String,
-    sharedLink: String,
     sharedDate: String,
     parent: String,
     copies: String
@@ -163,31 +162,7 @@ module.exports = {
         });
     },
 
-    //share folder
-    share:(folderId,shareLink,callback)=>{
-      Folder.update({
-          _id: folderId
-      }, {
-          $set: {
-              'shared': true,
-              'sharedLink': shareLink,
-              'sharedDate': Date.now()
-          }
-      }).then(callback)
-    },
 
-    //unshare folder
-    unshare:(folderId,callback)=>{
-      Folder.update({
-          _id:folderId
-      },{
-          $set:{
-              'shared': null,
-              'sharedLink': null,
-              'sharedDate': null
-          }
-      }).then(callback)
-    },
 
     //xhr call via context menu
     xhr: (folderId, callback) => {

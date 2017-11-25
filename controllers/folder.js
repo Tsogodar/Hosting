@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const folderModel = require('../models/Folder');
 const fileModel = require('../models/File');
-const domain=require('../config/domain').getDomain();
-const shortId = require('shortid');
 const {checkFolderName} = require('../helpers/checkFolderName');
 
 //add new folder
@@ -102,28 +100,6 @@ router.post('/destination/:id', (req, res) => {
     };
     folderModel.moveFolder(move.movedId, move.moveTo, (err, moved) => {
         if (moved) {
-            res.redirect('back');
-        }
-    })
-});
-
-
-//share folder
-router.get('/share/:id', (req, res) => {
-    let shareLink=shortId.generate();
-    folderModel.share(req.params.id, shareLink, (shared) => {
-        if(shared){
-            req.flash('share_msg',`${domain.protocol}://${domain.name}/shared/${shareLink}`)
-            res.redirect('back');
-        }
-    })
-});
-
-//unshare folder
-router.get('/unshare/:id', (req, res) => {
-    folderModel.unshare(req.params.id, (unshared) => {
-        if(unshared){
-            req.flash('unshare_msg',`Anulowano udostępnianie`)
             res.redirect('back');
         }
     })

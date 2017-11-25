@@ -1,5 +1,5 @@
 <div class="foldersSection mb-5">
-    {{#each folders.shared}}
+    {{#each shared}}
         <h4>
             {{#if copies}}
                 {{name}}({{copies}})
@@ -23,8 +23,6 @@
             </div>
             <div class="folderMenu">
                 <div class="folderActions">
-                </div>
-                <div class="folderActions">
                     <a href="/shared/{{_id}}" title="Otwórz">
                         <i class="fa fa-folder-open" aria-hidden="true"></i>
                     </a>
@@ -32,7 +30,6 @@
             </div>
             <span class={{_id}}></span>
         </div>
-        <h1>{{sharedId}}</h1>
     {{/each}}
 </div>
 

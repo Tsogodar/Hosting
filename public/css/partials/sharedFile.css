@@ -1,0 +1,40 @@
+.sharedFile {
+    width: 100%;
+}
+
+.content {
+    width: 70%;
+    margin: 10px 0;
+    text-align: center;
+    display: inline-block;
+}
+
+.content img {
+    border: 1px solid gray;
+    height: 800px;
+}
+
+.arrow{
+    display: inline-block;
+    text-align: center;
+    width: 2%;
+    margin: 10px;
+    font-size: 50pt;
+}
+
+.details{
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+}
+
+.menu button{
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 0;
+}
+
+.menu button:hover{
+    cursor: pointer;
+}
+

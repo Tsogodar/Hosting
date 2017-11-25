@@ -1,0 +1,44 @@
+{{#each files}}
+    <div class="sharedFile mt-5">
+        <!--<div class="arrow">-->
+        <!--<i class="fa fa-angle-left"></i>-->
+        <!--</div>-->
+        <div class="content">
+            <img src="/file/load/{{_id}}">
+        </div>
+        <!--<div class="arrow">-->
+        <!--<i class="fa fa-angle-right"></i>-->
+        <!--</div>-->
+        <div class="details">
+            <table class="table">
+                <tr>
+                    <td>Nazwa:</td>
+                    <td>{{filename}}</td>
+                </tr>
+                <tr>
+                    <td>Właściciel:</td>
+                    <td>{{metadata.owner}}</td>
+                </tr>
+                <tr>
+                    <td>Rozmiar:</td>
+                    <td>{{length}} KB</td>
+                </tr>
+                <tr>
+                    <td>Dodano:</td>
+                    <td>{{formatedDatas.uploadDate}}</td>
+                </tr>
+                <tr>
+                    <td>Udostępniono:</td>
+                    <td>{{formatedDatas.sharedDate}}</td>
+                </tr>
+            </table>
+            <div class="menu">
+                <a href="/file/download/{{_id}}">
+                    <button class="btn btn-lg btn-success">
+                        <i class="fa fa-download"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+{{/each}}

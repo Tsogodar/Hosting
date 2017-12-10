@@ -1,21 +1,15 @@
-.header {
-    width: 100%;
-    height: 100%;
+.init{
+    margin-top: 60px;
 }
-
-.buttonToUpload {
-    display: none;
+.fixed-action-btn{
+    bottom: initial;
+    right: 60px;
 }
 
 .labelToUploadFile, .labelToUploadFolder {
-    padding-left: 5px;
+    width: 100%;
 }
 
 .labelToUploadFile:hover, .labelToUploadFolder:hover {
     cursor: pointer;
-}
-
-.actionButton{
-    padding: 10px;
-    margin-right: 60px;
 }

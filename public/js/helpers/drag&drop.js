@@ -3,6 +3,10 @@ $(document).ready(function () {
         helper: 'clone',
         opacity: 0.7
     });
+    $('.file').draggable({
+        helper: 'clone',
+        opacity: 0.7
+    });
     $('.folder').droppable({
         tolerance: 'pointer',
         drop: function (event, ui) {

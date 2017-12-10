@@ -3,7 +3,7 @@ function copyLink(element) {
     $("body").append($temp);
     $temp.val($(element).text()).select();
     if (document.execCommand("copy")) {
-        $('.message').text('Skopiowano');
+        $('.message').text('Skopiowano').css('display','block');
         setInterval(function () {
             $('.alert-success').animate({'opacity': 0})
         }, 1500)

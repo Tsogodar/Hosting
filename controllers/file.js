@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const upload = require('../config/upload');
 const fileModel = require('../models/File');
+const {authenticated} = require('../helpers/authenticated');
 
-router.post('/add/:parent?', (req, res) => {
+router.post('/add/:parent?',authenticated, (req, res) => {
     upload(req, res, (error) => {
         if (error) {
             console.log(error)
@@ -13,12 +14,12 @@ router.post('/add/:parent?', (req, res) => {
     })
 });
 
-router.get('/load/:id', (req, res) => {
+router.get('/load/:id',authenticated, (req, res) => {
     let readstream = fileModel.loadFile(req.params.id);
     readstream.pipe(res);
 });
 
-router.get('/remove/:id', (req, res) => {
+router.get('/remove/:id',authenticated, (req, res) => {
     fileModel.removeFile(req.params.id);
     res.redirect('back')
 });

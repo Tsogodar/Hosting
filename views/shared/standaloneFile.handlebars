@@ -1,23 +1,17 @@
 {{#each files}}
-    <div class="sharedFile mt-5">
-        <!--<div class="arrow">-->
-        <!--<i class="fa fa-angle-left"></i>-->
-        <!--</div>-->
+    <div class="sharedFile">
         <div class="content">
             <img src="/file/load/{{_id}}">
         </div>
-        <!--<div class="arrow">-->
-        <!--<i class="fa fa-angle-right"></i>-->
-        <!--</div>-->
         <div class="details">
-            <table class="table">
+            <table class="bordered">
                 <tr>
                     <td>Nazwa:</td>
                     <td>{{filename}}</td>
                 </tr>
                 <tr>
                     <td>Właściciel:</td>
-                    <td>{{metadata.owner}}</td>
+                    <td>{{metadata.owner.name}} {{metadata.owner.surname}}</td>
                 </tr>
                 <tr>
                     <td>Rozmiar:</td>
@@ -25,17 +19,17 @@
                 </tr>
                 <tr>
                     <td>Dodano:</td>
-                    <td>{{formatedDatas.uploadDate}}</td>
+                    <td>{{metadata.uploadDate}}</td>
                 </tr>
                 <tr>
                     <td>Udostępniono:</td>
-                    <td>{{formatedDatas.sharedDate}}</td>
+                    <td>{{metadata.sharedDate}}</td>
                 </tr>
             </table>
             <div class="menu">
                 <a href="/file/download/{{_id}}">
-                    <button class="btn btn-lg btn-success">
-                        <i class="fa fa-download"></i>
+                    <button class="btn">
+                        <i class="material-icons">file_download</i>
                     </button>
                 </a>
             </div>

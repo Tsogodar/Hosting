@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const gridFsStream = require('gridfs-stream');
-
 const gfs = gridFsStream(mongoose.connection.db, mongoose.mongo);
 
 module.exports = {
@@ -11,7 +10,7 @@ module.exports = {
     //find files
     findFiles: (owner, parent, callback) => {
         gfs.files.find({
-            'metadata.owner': owner,
+            'metadata.owner.email': owner,
             'metadata.parent': parent,
         }).toArray(callback);
     },

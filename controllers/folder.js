@@ -3,11 +3,12 @@ const router = express.Router();
 const folderModel = require('../models/Folder');
 const fileModel = require('../models/File');
 const {checkFolderName} = require('../helpers/checkFolderName');
+const {authenticated} = require('../helpers/authenticated');
 
 //add new folder
-router.post('/add/:parent?', checkFolderName, (req, res) => {
+router.post('/add/:parent?', checkFolderName,authenticated, (req, res) => {
     let newFolder = {
-        owner: "cinek",
+        owner: req.user.email,
         name: req.body.newFolderName,
         shared: null,
         sharedLink: null,
@@ -33,7 +34,7 @@ router.post('/add/:parent?', checkFolderName, (req, res) => {
 });
 
 //open folder
-router.get('/:id', (req, res) => {
+router.get('/:id',authenticated, (req, res) => {
     if (req.xhr) {
         folderModel.xhr(req.params.id, (folder => {
             res.json(folder)
@@ -41,8 +42,8 @@ router.get('/:id', (req, res) => {
     } else {
         folderModel.openFolder(req.params.id, 'cinek', (folders => {
             folderModel.openedFolder(req.params.id, (openedFolder) => {
-                folderModel.findAllFolders('cinek', (allFolders) => {
-                    fileModel.findFiles('cinek', req.params.id, (error, files) => {
+                folderModel.findAllFolders(req.user.email, (allFolders) => {
+                    fileModel.findFiles(req.user.email, req.params.id, (error, files) => {
                         res.render('main/show', {
                             folders: folders,
                             openedFolder: openedFolder,
@@ -58,7 +59,7 @@ router.get('/:id', (req, res) => {
 });
 
 //move folder via drag&drop
-router.post('/move/:movedId/:moveTo', (req, res) => {
+router.post('/move/:movedId/:moveTo',authenticated, (req, res) => {
     const move = {
         movedId: req.params.movedId,
         moveTo: req.params.moveTo
@@ -71,7 +72,7 @@ router.post('/move/:movedId/:moveTo', (req, res) => {
 });
 
 //remove folder
-router.get('/remove/:id', (req, res) => {
+router.get('/remove/:id',authenticated, (req, res) => {
     folderModel.removeFolder(req.params.id, (deleted) => {
         if (deleted) {
             res.redirect('back');
@@ -80,7 +81,7 @@ router.get('/remove/:id', (req, res) => {
 });
 
 //rename folder
-router.post('/rename/:id/:parent?', (req, res) => {
+router.post('/rename/:id/:parent?',authenticated, (req, res) => {
     folderModel.renameFolder(req.params.id, req.body.renameInput, (renamed) => {
         if (renamed) {
             if (req.params.parent !== undefined) {
@@ -93,7 +94,7 @@ router.post('/rename/:id/:parent?', (req, res) => {
 });
 
 //move folder via context menu
-router.post('/destination/:id', (req, res) => {
+router.post('/destination/:id',authenticated, (req, res) => {
     const move = {
         movedId: req.body.destination,
         moveTo: req.params.id

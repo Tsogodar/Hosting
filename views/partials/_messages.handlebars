@@ -1,10 +1,10 @@
 {{#if share_msg}}
-    <div class="alert-success">
-        <div class="message">Udostępniono pod adresem:
+    <div class="teal darken-3">
+        <div class="message valign-wrapper">Udostępniono pod adresem:
             <div class="link">
                 <b>{{share_msg}}</b>
             </div>
-            <i class="fa fa-clipboard" onclick="copyLink('b')"></i>
+            <i class="material-icons " onclick="copyLink('b')">content_copy</i>
         </div>
     </div>
 {{/if}}
@@ -13,9 +13,34 @@
     <script>
         removeMessage();
     </script>
-    <div class="alert-success">
+    <div class="teal darken-3">
         <div class="message">
             {{unshare_msg}}
         </div>
+    </div>
+{{/if}}
+
+{{#if success_register_msg}}
+    <div class="teal darken-3">
+        <div class="message center-align">{{success_register_msg}}</div>
+    </div>
+{{/if}}
+
+{{#if fail_register_msg}}
+    <div class="red darken-4">
+        <div class="message center-align">{{fail_register_msg}}</div>
+    </div>
+{{/if}}
+
+{{#if success_logout_msg}}
+    <div class="teal darken-3">
+        <div class="message center-align">{{success_logout_msg}}</div>
+    </div>
+{{/if}}
+
+{{!--passport--}}
+{{#if error}}
+    <div class="red darken-4">
+        <div class="message center-align">{{error}}</div>
     </div>
 {{/if}}

@@ -4,16 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">-->
-    <!--<script src="https://code.jquery.com/jquery-3.2.1.js"></script>-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>-->
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>-->
-    <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
-    <!--<script src="https://use.fontawesome.com/448e4ba424.js"></script>-->
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/fontawesome/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/materialize/dist/css/materialize.min.css">
     <script src="/jquery/jquery.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/materialize/dist/js/materialize.min.js"></script>
     <script src="/jqueryui/jquery-ui.min.js"></script>
     <script src="/js/helpers/folderMenu.js"></script>
     <script src="/js/helpers/fileMenu.js"></script>
@@ -31,13 +25,24 @@
     <link rel="stylesheet" href="/css/partials/contextMenu.css">
     <link rel="stylesheet" href="/css/partials/messages.css">
     <link rel="stylesheet" href="/css/partials/sharedFile.css">
+    <link rel="stylesheet" href="/css/partials/footer.css">
     <link rel="stylesheet" href="/css/modals/addFolders.css">
+    <link rel="stylesheet" href="/css/modals/fileDetails.css">
     <title>Aplkacja hostingowa</title>
 </head>
 <body>
 {{>_navbar}}
 {{>_messages}}
 {{>_contextMenu}}
-{{{body}}}
+<main>
+    {{{body}}}
+</main>
+{{>_footer}}
+<script>
+    $(document).ready(function () {
+        $('.modal').modal();
+    });
+</script>
+
 </body>
 </html>

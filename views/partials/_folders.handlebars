@@ -17,8 +17,8 @@
     {{/if}}
     {{#each folders}}
         <div class="folder">
-            <div class="folderTitle">
-                <i class="fa fa-folder" aria-hidden="true"></i>
+            <div class="folderTitle valign-wrapper">
+                <i class="material-icons">folder</i>
                 {{#if copies}}
                     {{name}}({{copies}})
                 {{else}}
@@ -29,22 +29,22 @@
                 <div class="folderActions">
                     {{#if shared}}
                         <a href="/shared/unshare/{{_id}}" title="Anuluj udostępnianie">
-                            <i class="fa fa-ban" aria-hidden="true"></i>
+                            <i class="material-icons">cancel</i>
                         </a>
                     {{else}}
                     <a href="/shared/share/{{_id}}" title="Udostępnij">
-                        <i class="fa fa-share-alt" aria-hidden="true"></i>
+                        <i class="material-icons">share</i>
                     </a>
                     {{/if}}
                 </div>
                 <div class="folderActions">
                     <a href="/folder/{{_id}}" title="Otwórz">
-                        <i class="fa fa-folder-open" aria-hidden="true"></i>
+                        <i class="material-icons">folder_open</i>
                     </a>
                 </div>
                 <div class="folderActions">
                     <a href="/folder/remove/{{_id}}" title="Usuń">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <i class="material-icons">delete</i>
                     </a>
                 </div>
             </div>

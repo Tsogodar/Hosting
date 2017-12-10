@@ -1,28 +1,23 @@
-<nav class="navbar navbar-expand-sm">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="blue-grey darken-1">
     <div class="container">
-        <a class="navbar-brand" href="/">Dyplomówka</a>
-    </div>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a href="/login" class="nav-link">Logowanie</a>
-            </li>
-            <li class="nav-item">
-                <a href="/register" class="nav-link">Rejestracja</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">
-                    Witaj Marcin Gryczon
-                </a>
-                <div class="dropdown-menu">
-                    <a href="/account/settings" class="dropdown-item">Ustawienia</a>
-                    <a href="/account/logout" class="dropdown-item">Wyloguj</a>
-                </div>
-            </li>
-        </ul>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo left">Dyplomówka</a>
+            <ul id="dropdown" class="dropdown-content">
+                <li><a href="#!">Ustawienia</a></li>
+                <li><a href="/auth/logout">Wyloguj</a></li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                {{#if user}}
+                    <li>
+                        <a class="dropdown-button" data-activates="dropdown" data-beloworigin="true">Witaj Marcin
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
+                {{else}}
+                    <li><a href="/auth/login">Logowanie</a></li>
+                    <li><a href="/auth/register">Rejestracja</a></li>
+                {{/if}}
+            </ul>
+        </div>
     </div>
 </nav>

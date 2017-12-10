@@ -2,39 +2,32 @@
     width: 100%;
 }
 
-.content {
-    width: 70%;
-    margin: 10px 0;
+.sharedFile .content {
+    width: 75%;
+    margin: 55px 0;
     text-align: center;
     display: inline-block;
 }
 
-.content img {
+.sharedFile .content img {
     border: 1px solid gray;
-    height: 800px;
+    height: 715px;
+    image-orientation: from-image;
 }
 
-.arrow{
-    display: inline-block;
-    text-align: center;
-    width: 2%;
-    margin: 10px;
-    font-size: 50pt;
-}
-
-.details{
+.sharedFile .details{
     display: inline-block;
     vertical-align: top;
-    margin: 10px;
+    margin: 35px 0;
 }
 
-.menu button{
+.sharedFile .menu button{
     margin-top: 20px;
     width: 100%;
     border-radius: 0;
 }
 
-.menu button:hover{
+.sharedFile .menu button:hover{
     cursor: pointer;
 }
 

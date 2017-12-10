@@ -1,17 +1,18 @@
-<div class="mt-5">
-    <div class="col-md-3 mx-auto">
+<div class="container">
+    <div class="col s6">
         <div class="card card-body">
-            <h3 class="text-center">Logowanie</h3>
-            <form action="">
-                <div class="form-group">
+            <h3 class="center-align">Logowanie</h3>
+            <form action="/auth/login" method="post" class="authForm">
+                <div class="input-field col s6">
+                    <input id="email" type="email" name="emailInput" required>
                     <label for="email">E-mail</label>
-                    <input type="email" class="form-control" name="email" required>
                 </div>
-                <div class="form-group">
+                <div class="input-field col s6">
+                    <input id="password" type="password" name="passwordInput" required>
                     <label for="password">Hasło</label>
-                    <input type="password" class="form-control" name="password" required>
                 </div>
-                <button type="submit" class="loginBtn btn btn-lg btn-warning float-right ">Zaloguj</button>
+                <button type="submit" class="btn loginBtn">Zaloguj</button>
+                <a href="/auth/login/google" class="loginGoogle btn orange darken-2">Zaloguj przez Google</a>
             </form>
         </div>
     </div>

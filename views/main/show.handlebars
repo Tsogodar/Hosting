@@ -1,6 +1,37 @@
-<div class="p-5">
-    {{>_filesShowHeader}}
-    {{>_folders}}
-    {{>_files}}
-</div>
+{{#each openedFolder}}
+    <form class="addFileForm" action="/file/add/{{_id}}" method="post" enctype="multipart/form-data">
+{{else}}
+    <form class="addFileForm" action="/file/add" method="post" enctype="multipart/form-data">
+{{/each}}
+    <input type="file" name="fileToUpload" id="fileToUpload" multiple>
+    <input type="submit" value="submit">
+</form>
 
+    <div class="init">
+        <div class="fixed-action-btn horizontal click-to-toggle">
+            <a class="btn-floating btn-large orange">
+                <i class="material-icons">add</i>
+            </a>
+            <ul>
+                <li>
+                    <a class="btn-floating deep-orange">
+                        <label class="labelToUploadFolder modal-trigger" data-target="addFolderModal">
+                            <i class="material-icons">create_new_folder</i>
+                        </label>
+                    </a>
+                </li>
+                <li>
+                    <a class="btn-floating deep-orange">
+                        <label class="labelToUploadFile" for="fileToUpload">
+                            <i class="material-icons">file_upload</i>
+                        </label>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{{> modals/_addFolders}}
+{{> modals/_renameFolder}}
+{{> modals/_moveFolder}}
+{{> _folders}}
+{{> _files}}

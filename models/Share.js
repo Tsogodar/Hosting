@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const folderModel = require('../models/Folder');
 const fileModel = require('../models/File');
+const moment = require('moment');
+
+moment.locale('pl');
 
 module.exports = {
 
@@ -21,7 +24,7 @@ module.exports = {
                         }, {
                             $set: {
                                 'metadata.shared': true,
-                                'metadata.sharedDate': Date.now()
+                                'metadata.sharedDate': moment().format('D MMMM YYYY, HH:mm:ss'),
                             }
                         }).then(callback);
                     }
@@ -48,7 +51,6 @@ module.exports = {
                 fileModel.gfs.files.findOne({
                     _id: mongoose.Types.ObjectId(resourceId)
                 }).then((result) => {
-                    console.log(result)
                     if (result === null) {
                         console.log('błąd udostępniania')
                     } else{
@@ -57,7 +59,7 @@ module.exports = {
                         }, {
                             $set: {
                                 'metadata.shared': null,
-                                'metadata.sharedDate': null
+                                'metadata.sharedDate': 'Nie'
                             }
                         }).then(callback);
                     }

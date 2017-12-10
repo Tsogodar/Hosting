@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const domain = require('../config/domain').getDomain();
-const moment = require('moment');
 const shareModel = require('../models/Share');
-
-moment.locale('pl');
+const {authenticated} = require('../helpers/authenticated');
 
 //share resource
-router.get('/share/:id', (req, res) => {
+router.get('/share/:id',authenticated, (req, res) => {
     shareModel.share(req.params.id, (shared) => {
         if (shared) {
             req.flash('share_msg', `${domain.protocol}://${domain.name}/shared/${req.params.id}`)
@@ -17,7 +15,7 @@ router.get('/share/:id', (req, res) => {
 });
 
 //unshare resource
-router.get('/unshare/:id', (req, res) => {
+router.get('/unshare/:id',authenticated, (req, res) => {
     shareModel.unshare(req.params.id, (unshared) => {
         if (unshared) {
             req.flash('unshare_msg', `Anulowano udostępnianie`)
@@ -38,10 +36,6 @@ router.get('/:id', (req, res) => {
                     })
                 } else {
                     files[0].length = Math.floor(files[0].length / 1024);
-                    files[0].formatedDatas = {
-                        uploadDate: moment(files[0].uploadDate).format('D MMMM YYYY, HH:mm:ss'),
-                        sharedDate: moment(files[0].metadata.sharedDate).format('D MMMM YYYY, HH:mm:ss'),
-                    };
                     res.render('shared/standaloneFile', {
                         files: files
                     })

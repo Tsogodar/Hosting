@@ -1,0 +1,69 @@
+<div id="{{_id}}" class="modal detailsModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Szczegóły</h5>
+            </div>
+            <div class="modal-body">
+                <div class="arrow">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                </div>
+                <div class="content">
+                    <img class="img-fluid" src="/file/load/{{_id}}">
+                </div>
+                <div class="arrow">
+                    <i class="material-icons">keyboard_arrow_right</i>
+                </div>
+                <div class="details">
+                    <table class="bordered">
+                        <tr>
+                            <td>Nazwa:</td>
+                            <td>{{filename}}</td>
+                        </tr>
+                        <tr>
+                            <td>Właściciel:</td>
+                            <td>{{metadata.owner.name}} {{metadata.owner.surname}}</td>
+                        </tr>
+                        <tr>
+                            <td>Rozmiar:</td>
+                            <td>{{length}} KB</td>
+                        </tr>
+                        <tr>
+                            <td>Dodano:</td>
+                            <td>{{metadata.uploadDate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Udostępniono:</td>
+                            <td>{{metadata.sharedDate}}</td>
+                        </tr>
+                    </table>
+                    <div class="menu">
+                        <a href="/file/download/{{_id}}">
+                            <button class="btn orange">
+                                <i class="material-icons">file_download</i>
+                            </button>
+                        </a>
+                        {{#if metadata.shared}}
+                            <a href="/shared/unshare/{{_id}}" title="Anuluj udostępnianie">
+                                <button class="btn">
+                                    <i class="material-icons">cancel</i>
+                                </button>
+                            </a>
+                        {{else}}
+                            <a href="/shared/share/{{_id}}" title="Udostępnij">
+                                <button class="btn">
+                                    <i class="material-icons">share</i>
+                                </button>
+                            </a>
+                        {{/if}}
+                        <a href="/file/remove/{{_id}}">
+                            <button class="btn deep-orange">
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

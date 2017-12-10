@@ -1,4 +1,4 @@
-<div class="filesSection mb-5">
+<div class="filesSection">
     {{#if files}}
         <h3>Pliki</h3>
     {{/if}}
@@ -9,34 +9,34 @@
             <div class="fileMenu">
                 <div class="fileActions">
                     <a href="/file/download/{{_id}}" title="Pobierz">
-                        <i class="fa fa-download" aria-hidden="true"></i>
+                        <i class="small material-icons">file_download</i>
                     </a>
                 </div>
                 <div class="fileActions">
                     {{#if metadata.shared}}
                         <a href="/shared/unshare/{{_id}}" title="Anuluj udostępnianie">
-                            <i class="fa fa-ban" aria-hidden="true"></i>
+                            <i class="small material-icons">cancel</i>
                         </a>
                     {{else}}
                         <a href="/shared/share/{{_id}}" title="Udostępnij">
-                            <i class="fa fa-share-alt" aria-hidden="true"></i>
+                            <i class="small material-icons">share</i>
                         </a>
                     {{/if}}
                 </div>
                 <div class="fileActions">
-                    <a href="/folder/{{_id}}" title="Szczegóły">
-                        <i class="fa fa-file" aria-hidden="true"></i>
+                    <a class="modal-trigger" data-target="{{_id}}" title="Szczegóły">
+                        <i class="small material-icons">search</i>
                     </a>
                 </div>
                 <div class="fileActions">
                     <a href="/file/remove/{{_id}}" title="Usuń">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <i class="small material-icons">delete</i>
                     </a>
                 </div>
             </div>
             <span class={{_id}}></span>
         </div>
+        {{> modals/_fileDetails}}
     {{/each}}
 </div>
-
 <script src="/js/helpers/submitUploadForm.js"></script>

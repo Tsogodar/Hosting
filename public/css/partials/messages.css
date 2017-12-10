@@ -1,10 +1,18 @@
-.message{
-    padding: 5px;
+.teal .darken-3{
+    width: 100%;
     text-align: center;
 }
 
+.message{
+    width: 35%;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+}
+
 .message i{
-    color: black;
+    color: white;
     margin-left: 5px;
 }
 

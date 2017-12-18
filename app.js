@@ -55,6 +55,7 @@ app.use('/auth',require('./controllers/auth'));
 app.use('/folder',require('./controllers/folder'));
 app.use('/file',require('./controllers/file'));
 app.use('/shared',require('./controllers/share'));
+app.use('/account',require('./controllers/account'));
 
 app.use((req,res)=>{
    let error=new Error();

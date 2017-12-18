@@ -25,7 +25,8 @@ module.exports = {
     //remove file
     removeFile: (fileId) => {
         gfs.remove({
-            _id: mongoose.Types.ObjectId(fileId)
+            _id: mongoose.Types.ObjectId(fileId),
+            mode: 'w'
         })
     },
 

@@ -1,0 +1,74 @@
+<div class="settings">
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s3"><a class="active" href="#profile">Profil</a></li>
+            <li class="tab col s3"><a href="#shared">Udostępnione</a></li>
+            <li class="tab col s3 "><a href="#stats">Statystyki</a></li>
+            <li class="tab col s3"><a href="#remove">Usunięcie</a></li>
+        </ul>
+    </div>
+    <div id="profile" class="col s12">
+        <div class="col s6">
+            <div id="profile" class="col s12">
+                <div class="container">
+                    <div class="col s6">
+                        <div class="card card-body">
+                            <form action="/account/profilUpdate" method="post" class="authForm">
+                                <div class="input-field col s6">
+                                    <input id="name" type="text" name="nameInput" value="{{#each user}}{{name}}{{/each}}" required>
+                                    <label for="name">Imię</label>
+                                    <button type="submit" class="btn-floating">m</button>
+                                </div>
+                            </form>
+                                <div class="input-field col s6">
+                                    <input id="surname" type="text" name="surnameInput" value="{{#each user}}{{surname}}{{/each}}" required>
+                                    <label for="surname">Nazwisko</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="email" type="email" name="emailInput" value="{{#each user}}{{email}}{{/each}}" required>
+                                    <label for="email">E-mail</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="password" type="password" name="passwordInput" value="{{#each user}}{{password}}{{/each}}"
+                                           required>
+                                    <label for="password">Hasło</label>
+                                </div>
+                                {{!--<div class="input-field col s6">--}}
+                                    {{!--<input id="confirmPass" type="password" name="confirmPasswordInput"--}}
+                                           {{!--value="{{confirmPassword}}" required>--}}
+                                    {{!--<label for="confirmPass">Powtórz hasło</label>--}}
+                                {{!--</div>--}}
+                                <button type="submit" class="registerBtn btn">Aktualizuj</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="shared" class="col s12">Test 2</div>
+            <div id="stats" class="col s12">
+                <table class="border">
+                    {{!--{{#each user}}--}}
+                    {{!--<tr>--}}
+                    {{!--<td>Zarejestrowano:</td>--}}
+                    {{!--<td>{{registered}}</td>--}}
+                    {{!--</tr>--}}
+                    {{!--<tr>--}}
+                    {{!--<td>Imię i nazwisko</td>--}}
+                    {{!--<td>{{name}} {{surname}}</td>--}}
+                    {{!--</tr>--}}
+                    {{!--{{/each}}--}}
+                </table>
+            </div>
+            <div id="remove" class="col s12">
+                <table class="border">
+                    <tr>
+                        <td>Usuń konto:</td>
+                        <td>Bezpowrotnie usuwa konto</td>
+                    </tr>
+                    <tr>
+                        <td>Wyczyść konto</td>
+                        <td>Bezpowrotnie usuwa wszystkie pliki</td>
+                    </tr>
+                </table>
+            </div>
+        </div>

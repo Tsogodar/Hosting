@@ -1,0 +1,11 @@
+.settings{
+    padding: 1%;
+}
+
+#profile{
+    margin-top: 2%;
+}
+
+#profile .input-field input{
+    width: 70%;
+}

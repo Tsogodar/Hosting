@@ -2,13 +2,12 @@ const express =require('express');
 const path=require('path');
 const bodyParser =require('body-parser');
 const exphbs =require('express-handlebars');
-const db=require('./config/database');
+const db=require('./config/database').connect();
 const connectFlash=require('connect-flash');
 const expressSession=require('express-session');
 const passport=require('passport');
-const app=express();
 
-db.connect();
+const app=express();
 
 require('./config/passport')(passport);
 
@@ -17,7 +16,8 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname,'public')));
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 app.use(expressSession({
@@ -37,9 +37,11 @@ app.use((req,res,next)=>{
     res.locals.fail_register_msg=req.flash('fail_register_msg');
     res.locals.share_msg=req.flash('share_msg');
     res.locals.unshare_msg=req.flash('unshare_msg');
+    res.locals.change_msg=req.flash('change_msg');
     res.locals.error_msg=req.flash('error_msg');
     res.locals.error=req.flash('error');
     res.locals.user=req.user || null;
+    // res.locals.validate_msg=req.flash('validate_msg');
     next();
 });
 

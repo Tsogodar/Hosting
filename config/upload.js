@@ -15,7 +15,6 @@ const storage = new gridFsStorage({
                     surname:req.user.surname
                 },
                 shared: false,
-                sharedLink: null,
                 sharedDate: 'Nie',
                 uploadDate: moment().format('D MMMM YYYY,HH:mm:ss'),
                 parent: parent = (req.params.parent == 'undefined' ? 'null' : req.params.parent)

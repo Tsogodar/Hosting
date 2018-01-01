@@ -21,3 +21,8 @@
 .loginGoogle{
     margin-top: 15px;
 }
+
+.loginGoogle img{
+    width: 20%;
+    vertical-align: middle;
+}

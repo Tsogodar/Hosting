@@ -45,3 +45,54 @@
 .detailsModal .menu{
     text-align: center;
 }
+
+@media screen and (min-width: 1100px) {
+    .detailsModal{
+        width: 95%;
+        max-height:91%;
+        margin-top: -2.5%;
+    }
+
+    .detailsModal .content {
+        width: 65%;
+        margin: 10px 0;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .detailsModal .content img {
+        image-orientation: from-image;
+        border: 1px solid gray;
+        height: 510px;
+        max-width:100%;
+    }
+
+    .detailsModal .details{
+        display: inline-block;
+        vertical-align: top;
+        margin: 0;
+    }
+
+    .detailsModal .menu button{
+        margin: 20px 3px;
+        width: 30%;
+        border-radius: 0;
+    }
+
+    .detailsModal .menu button:hover{
+        cursor: pointer;
+    }
+
+    .detailsModal .arrow{
+        display: inline-block;
+        text-align: center;
+        width: 2%;
+        margin: 10px;
+        font-size: 50pt;
+    }
+
+    .detailsModal .menu{
+        text-align: center;
+    }
+
+}

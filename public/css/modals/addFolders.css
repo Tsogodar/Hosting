@@ -1,4 +1,4 @@
-.modal{
+#addFolderModal, #changeFolderNameModal{
     width: 25%;
 }
 

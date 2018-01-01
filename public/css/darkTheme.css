@@ -1,0 +1,56 @@
+body{
+    background-color: #1a1a1a;
+}
+
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(../img/dark.gif) center no-repeat #fff;
+    background-color: #1a1a1a;
+}
+
+.filesSection, .foldersSection{
+    color: white;
+}
+
+.blue-grey.darken-1{
+    background-color: #161b23 !important;
+}
+
+.detailsModal{
+    background-color: #1a1a1a;
+}
+
+.dropdown-content{
+    background-color: #161b23;
+}
+
+.dropdown-content li a{
+    color: white;
+}
+
+.dropdown-content li a:hover{
+    color: darkslategray;
+}
+
+.settings{
+    color: white;
+}
+
+.tabs{
+    background-color: #1a1a1a;
+
+}
+
+#addFolderModal, .modal-footer{
+    background-color: #1a1a1a !important;
+}
+
+.modal{
+    background-color: #1a1a1a !important;
+    color: white;
+}

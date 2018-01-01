@@ -1,46 +1,133 @@
+{{#if user.config.theme.dark.set}}
+    <link rel="stylesheet" href="/css/darkTheme.css">
+{{/if}}
 <div class="settings">
     <div class="col s12">
         <ul class="tabs">
-            <li class="tab col s3"><a class="active" href="#profile">Profil</a></li>
+            <li class="tab col s3"><a class="active" href="#account">Konto</a></li>
             <li class="tab col s3"><a href="#shared">Udostępnione</a></li>
             <li class="tab col s3 "><a href="#stats">Statystyki</a></li>
             <li class="tab col s3"><a href="#remove">Usunięcie</a></li>
         </ul>
     </div>
-    <div id="profile" class="col s12">
+    <div id="account" class="col s12">
         <div class="col s6">
             <div id="profile" class="col s12">
                 <div class="container">
                     <div class="col s6">
-                        <div class="card card-body">
-                            <form action="/account/profilUpdate" method="post" class="authForm">
-                                <div class="input-field col s6">
-                                    <input id="name" type="text" name="nameInput" value="{{#each user}}{{name}}{{/each}}" required>
-                                    <label for="name">Imię</label>
-                                    <button type="submit" class="btn-floating">m</button>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td class="formsTitle">
+                                    <h5>Profil</h5>
+                                    <p>Możliwość zmiany informacji o profilu</p>
+                                </td>
+                            <td>
+                            <div class="forms">
+                                <form action="/account/updateName" method="post" class="authForm">
+                                    <div class="input-field col s6">
+                                        <input id="name" type="text" name="nameInput"
+                                               value="{{#each user}}{{name}}{{/each}}" required>
+                                        <label for="name">Imię</label>
+                                        <button type="submit" class="btn-floating">Zapisz</button>
+                                    </div>
+                                </form>
+                                <form action="/account/updateSurname" method="post" class="authForm">
+                                    <div class="input-field col s6">
+                                        <input id="surname" type="text" name="surnameInput"
+                                               value="{{#each user}}{{surname}}{{/each}}" required>
+                                        <label for="surname">Nazwisko</label>
+                                        <button type="submit" class="btn-floating">Zapisz</button>
+                                    </div>
+                                </form>
+                            {{#if user.googleID}}
+                            {{else}}
+                                    <form action="/account/updateEmail" method="post" class="authForm">
+                                        <div class="input-field col s6">
+                                            <input id="email" type="email" name="emailInput"
+                                                   value="{{#each user}}{{email}}{{/each}}" required>
+                                            <label for="email">E-mail</label>
+                                            <button type="submit" class="btn-floating">Zapisz</button>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
-                                <div class="input-field col s6">
-                                    <input id="surname" type="text" name="surnameInput" value="{{#each user}}{{surname}}{{/each}}" required>
-                                    <label for="surname">Nazwisko</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="email" type="email" name="emailInput" value="{{#each user}}{{email}}{{/each}}" required>
-                                    <label for="email">E-mail</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="password" type="password" name="passwordInput" value="{{#each user}}{{password}}{{/each}}"
-                                           required>
-                                    <label for="password">Hasło</label>
-                                </div>
-                                {{!--<div class="input-field col s6">--}}
-                                    {{!--<input id="confirmPass" type="password" name="confirmPasswordInput"--}}
-                                           {{!--value="{{confirmPassword}}" required>--}}
-                                    {{!--<label for="confirmPass">Powtórz hasło</label>--}}
-                                {{!--</div>--}}
-                                <button type="submit" class="registerBtn btn">Aktualizuj</button>
-                            </form>
-                        </div>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td class="formsTitle">
+                                        <h5>Hasło</h5>
+                                        <p>Możliwość zmiany hasła</p>
+                                    </td>
+                                    <td>
+                                        <div class="forms">
+                                            <form action="/account/profilPasswordUpdate" method="post" class="authForm">
+                                                <div class="input-field col s6">
+                                                    <input id="password" type="password" name="passwordInput"
+                                                           required>
+                                                    <label for="password">Obecne hasło</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input id="password" type="password" name="passwordInput"
+                                                           required>
+                                                    <label for="password">Nowe hasło</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input id="password" type="password" name="passwordInput"
+                                                           required>
+                                                    <label for="password">Powtórz nowe hasło</label>
+                                                </div>
+                                                <button type="submit" class="btn-floating">Zapisz</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/if}}
+                            <tr>
+                                <td class="formsTitle">
+                                    <h5>Inne</h5>
+                                    <p>Domyślne ustawienia</p>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <label>
+                                                    Ciemny motyw
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <form class="updateTheme" method="post" action="/account/updateTheme">
+                                                    <div class="switch">
+                                                        <label>
+                                                            <input type="checkbox" name="themeSwitch" {{user.config.theme.dark.value}}>
+                                                            <span class="lever"></span>
+                                                        </label>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>
+                                                    Widok listy
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <div class="switch">
+                                                    <label>
+                                                        <input type="checkbox" name="listSwitch">
+                                                        <span class="lever"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -48,14 +135,14 @@
             <div id="stats" class="col s12">
                 <table class="border">
                     {{!--{{#each user}}--}}
-                    {{!--<tr>--}}
-                    {{!--<td>Zarejestrowano:</td>--}}
-                    {{!--<td>{{registered}}</td>--}}
-                    {{!--</tr>--}}
-                    {{!--<tr>--}}
-                    {{!--<td>Imię i nazwisko</td>--}}
-                    {{!--<td>{{name}} {{surname}}</td>--}}
-                    {{!--</tr>--}}
+                    <tr>
+                        <td>Zarejestrowano:</td>
+                        <td>{{user.registered}}</td>
+                    </tr>
+                    <tr>
+                        <td>Imię i nazwisko</td>
+                        <td>{{user.name}} {{user.surname}}</td>
+                    </tr>
                     {{!--{{/each}}--}}
                 </table>
             </div>
@@ -72,3 +159,6 @@
                 </table>
             </div>
         </div>
+    </div>
+</div>
+<script src="/js/helpers/changeSwitch.js"></script>

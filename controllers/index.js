@@ -18,6 +18,7 @@ router.get('/',authenticated, (req, res) => {
                 }
             }
             res.render('main/show', {
+                config:req.user.config,
                 folders: folders,
                 files: files
             })

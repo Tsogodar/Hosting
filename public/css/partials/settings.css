@@ -9,3 +9,11 @@
 #profile .input-field input{
     width: 70%;
 }
+
+.authForm .btn-floating{
+    width: 80px;
+}
+
+.formsTitle{
+    vertical-align: top;
+}

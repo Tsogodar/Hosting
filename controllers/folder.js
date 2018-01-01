@@ -49,7 +49,8 @@ router.get('/:id',authenticated, (req, res) => {
                             openedFolder: openedFolder,
                             parent: req.params.id,
                             allFolders: allFolders,
-                            files: files
+                            files: files,
+                            config:req.user.config,
                         });
                     });
                 })

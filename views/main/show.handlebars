@@ -1,4 +1,7 @@
 <div class="se-pre-con"></div>
+{{#if config.theme.dark.set}}
+    <link rel="stylesheet" href="/css/darkTheme.css">
+{{/if}}
 {{#each openedFolder}}
     <form class="addFileForm" action="/file/add/{{_id}}" method="post" enctype="multipart/form-data">
 {{else}}
@@ -34,5 +37,6 @@
 {{> modals/_addFolders}}
 {{> modals/_renameFolder}}
 {{> modals/_moveFolder}}
+{{> modals/_noFreeSpace}}
 {{> _folders}}
 {{> _files}}

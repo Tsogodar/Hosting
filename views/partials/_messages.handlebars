@@ -38,6 +38,12 @@
     </div>
 {{/if}}
 
+{{#if change_msg}}
+    <script>
+        Materialize.toast('Pomyślnie zapisano', 2000)
+    </script>
+{{/if}}
+
 {{!--passport--}}
 {{#if error}}
     <div class="red darken-4">

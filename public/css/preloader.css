@@ -3,9 +3,11 @@
 .se-pre-con {
     position: fixed;
     left: 0px;
-    top: 67px;
+    top: 0px;
+    /*top: 67px;*/
     width: 100%;
-    height: 80%;
+    height: 100%;
+    /*height: 80%;*/
     z-index: 9999;
-    background: url(../img/preloader.gif) center no-repeat #fff;
+    background: url(../img/light.gif) center no-repeat #fff;
 }

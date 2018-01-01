@@ -54,6 +54,8 @@
 .fileActions a {
     display: none;
     color: white;
+    width: 32px;
+    margin: 0 auto;
 }
 
 .fileActions:hover, .file:hover {

@@ -40,7 +40,7 @@ router.get('/:id',authenticated, (req, res) => {
             res.json(folder)
         }));
     } else {
-        folderModel.openFolder(req.params.id, 'cinek', (folders => {
+        folderModel.openFolder(req.params.id, req.user.email, (folders => {
             folderModel.openedFolder(req.params.id, (openedFolder) => {
                 folderModel.findAllFolders(req.user.email, (allFolders) => {
                     fileModel.findFiles(req.user.email, req.params.id, (error, files) => {

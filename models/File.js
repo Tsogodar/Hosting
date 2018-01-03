@@ -28,11 +28,9 @@ module.exports = {
         gfs.files.findOne({
             _id: mongoose.Types.ObjectId(fileId)
         }, (err, file) => {
-            console.log(userModel.User)
             let size = file.length;
             userModel.checkIfExists(email, (user) => {
                 let addSpace = parseInt(user.freeSpace) + parseInt(size);
-                console.log(addSpace)
                 userModel.changeFreeSpace(email, addSpace, (change => {
                     gfs.remove({
                         _id: mongoose.Types.ObjectId(fileId)
@@ -47,5 +45,56 @@ module.exports = {
         gfs.files.findOne({
             _id: mongoose.Types.ObjectId(fileId),
         }, callback);
-    }
+    },
+
+    //Find files copies
+    fileCopies: (filename, parent, callback) => {
+        gfs.files.find({
+            filename: filename,
+            'metadata.parent': {
+                $eq: parent
+            }
+        }).toArray(callback)
+    },
+
+    //reset copies if unique name
+    resetCopies: (fileName, callback) => {
+        gfs.files.update({
+            filename: fileName
+        }, {
+            $set: {
+                'metadata.copies': null
+            }
+        }).then(callback);
+    },
+
+    //rename folder
+    renameFile: (renamedId, newName, callback) => {
+        gfs.files.update({
+            _id: mongoose.Types.ObjectId(renamedId)
+        }, {
+            $set: {
+                filename: newName,
+            }
+        }).then((updated) => {
+            gfs.files.findOne({
+                _id: mongoose.Types.ObjectId(renamedId)
+            }, (err, file) => {
+                module.exports.fileCopies(newName, file.metadata.parent, ((err,copies) => {
+                    console.log(copies.length)
+                    if (copies.length === 1) {
+                        module.exports.resetCopies(newName, callback)
+                    } else {
+                        gfs.files.update({
+                            _id: renamedId
+                        }, {
+                            $set: {
+                                copies: copies.length,
+                            }
+                        }).then(callback)
+                    }
+                }))
+            });
+        });
+    },
 };

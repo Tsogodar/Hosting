@@ -15,7 +15,12 @@
                     <table class="bordered">
                         <tr>
                             <td>Nazwa:</td>
-                            <td>{{filename}}</td>
+                            <td>
+                                {{filename}}
+                                <a class="modal-trigger" data-target="cname{{_id}}" title="Szczegóły">
+                                    <i class="small material-icons">create</i>
+                                </a>
+                            </td>
                         </tr>
                         <tr>
                             <td>Właściciel:</td>
@@ -64,3 +69,4 @@
         </div>
     </div>
 </div>
+

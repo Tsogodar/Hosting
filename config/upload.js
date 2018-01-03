@@ -17,7 +17,8 @@ const storage = new gridFsStorage({
                 shared: false,
                 sharedDate: 'Nie',
                 uploadDate: moment().format('D MMMM YYYY,HH:mm:ss'),
-                parent: parent = (req.params.parent == 'undefined' ? 'null' : req.params.parent)
+                parent: parent = (req.params.parent == 'undefined' ? 'null' : req.params.parent),
+                copies:null
             }
         };
     }

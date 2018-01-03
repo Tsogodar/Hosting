@@ -21,7 +21,7 @@ router.get('/load/:id', authenticated, (req, res) => {
 });
 
 router.get('/remove/:id', authenticated, (req, res) => {
-    fileModel.removeFile(req.params.id,req.user.email, (err) => {
+    fileModel.removeFile(req.params.id, req.user.email, (err) => {
         if (!err)
             res.redirect('back')
     });
@@ -47,6 +47,32 @@ router.post('/space', (req, res) => {
             })
         } else {
             res.json({data: false})
+        }
+    })
+});
+
+//rename folder
+router.post('/rename/:id/:parent?', authenticated, (req, res) => {
+    fileModel.renameFile(req.params.id, req.body.renameInput, (renamed) => {
+        if (renamed) {
+            if (req.params.parent !== undefined) {
+                res.redirect(`/folder/${req.params.parent}`);
+            } else {
+                res.redirect('/');
+            }
+        }
+    });
+});
+
+router.post('/copies', authenticated, (req, res) => {
+    let filename = req.body.filename;
+    fileModel.gfs.files.find({
+        filename: filename
+    }).toArray((err, file) => {
+        if (file.length >= 1) {
+            res.json({data: false})
+        } else {
+            res.json({data: true})
         }
     })
 });

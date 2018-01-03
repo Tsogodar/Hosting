@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const fileModel = require('./File');
 const moment = require('moment');
 
 moment.locale('pl');
@@ -84,6 +83,7 @@ module.exports = {
                 email: newEmail
             }
         }, (emailChanged)=>{
+            const fileModel = require('./File');
             fileModel.gfs.files.update({
                 'metadata.owner.email': oldEmail,
             }, {
@@ -115,5 +115,3 @@ module.exports = {
         }, callback);
     }
 };
-
-console.log(module.exports.User);

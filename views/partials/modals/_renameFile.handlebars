@@ -1,4 +1,4 @@
-<div class="modal" id="changeFolderNameModal">
+<div id="cname{{_id}}" class="modal changeFileNameModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,16 +6,16 @@
             </div>
             <div class="modal-body">
                 {{#if parent}}
-                <form method="post" action="/folder/rename/{{#each openedFolder}}{{_id}}{{/each}}/{{parent}}">
+                <form method="post" action="/file/rename/{{_id}}/{{parent}}">
                 {{else}}
-                <form method="post" action="/folder/rename/{{#each openedFolder}}{{_id}}{{/each}}">
+                <form method="post" action="/file/rename/{{_id}}">
                 {{/if}}
-                <input class="form-control" value="{{#each openedFolder}}{{name}}{{/each}}" type="text"
+                <input class="form-control" value="{{filename}}" type="text"
                        name="renameInput" required
                        autocomplete="off"
                        placeholder="Podaj nową nazwę">
                 <div class="modal-footer">
-                    <button type="button" class="btn modal-close">Anuluj</button>
+                    <button type="button" class="btn btn-primary modal-action modal-close waves-effect waves-green">Anuluj</button>
                     <input type="submit" class="btn btn-primary" value="Ok">
                 </div>
             </form>

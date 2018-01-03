@@ -20,7 +20,7 @@ $(document).ready(function () {
                     // $('.btnUpload').attr("disabled", true).removeClass('btn-success').addClass('uploadInProgress');
                     // $('.btnUpload h5').html('Przesyłanie')
                 } else {
-                    // alert('Brak dostępnego miejsca');
+                    alert('Brak dostępnego miejsca');
                     $('#noFreeSpaceModal').modal('open');
                 }
             }

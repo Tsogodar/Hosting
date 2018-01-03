@@ -13,7 +13,6 @@
 
 .detailsModal .content img, .detailsModal .content video {
     image-orientation: from-image;
-    /*border: 1px solid #252525;*/
     height: 780px;
     max-width:100%;
 }

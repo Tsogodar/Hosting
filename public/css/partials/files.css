@@ -20,8 +20,8 @@
 
 .icon{
     width: 70% !important;
-    margin: 0 15%;
-    /*display: block;*/
+    margin: 5px 15%;
+    height: 135px !important;
 }
 
 .file p {

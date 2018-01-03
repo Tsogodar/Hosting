@@ -54,3 +54,7 @@ body{
     background-color: #1a1a1a !important;
     color: white;
 }
+
+audio{
+    background-color: white;
+}

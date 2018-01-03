@@ -4,8 +4,36 @@
     {{/if}}
     {{#each files}}
         <div class="file">
-            <img src="/file/load/{{_id}}">
-            <p>{{filename}}</p>
+            {{#eq contentType 'image/jpeg'}}
+                <img src="/file/load/{{_id}}">
+            {{else eq contentType 'video/mp4'}}
+                <video src="/file/load/{{_id}}"></video>
+            {{else eq contentType 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'}}
+                <img class="icon" src="/img/icons/doc.svg">
+            {{else eq contentType 'application/x-msdownload'}}
+                <img class="icon" src="/img/icons/exe.svg">
+            {{else eq contentType 'audio/mpeg'}}
+                <img class="icon" src="/img/icons/mp3.svg">
+            {{else eq contentType 'application/pdf'}}
+                <img class="icon" src="/img/icons/pdf.svg">
+            {{else eq contentType 'text/plain'}}
+                <img class="icon" src="/img/icons/txt.svg">
+            {{else eq contentType 'application/octet-stream'}}
+                <img class="icon" src="/img/icons/iso.svg">
+            {{else eq contentType 'text/html'}}
+                <img class="icon" src="/img/icons/html.svg">
+            {{else eq contentType 'application/json'}}
+                <img class="icon" src="/img/icons/json-file.svg">
+            {{else eq contentType 'application/vnd.openxmlformats-officedocument.presentationml.presentation'}}
+                <img class="icon" src="/img/icons/ppt.svg">
+            {{else eq contentType 'application/x-javascript'}}
+                <img class="icon" src="/img/icons/javascript.svg">
+            {{else eq contentType 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}}
+                <img class="icon" src="/img/icons/xls.svg">
+            {{else eq contentType 'text/css'}}
+                <img class="icon" src="/img/icons/css.svg">
+            {{/eq}}
+            <p>{{filenameShort}}</p>
             <div class="fileMenu">
                 <div class="fileActions">
                     <a href="/file/download/{{_id}}" title="Pobierz">

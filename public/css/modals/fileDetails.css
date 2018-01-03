@@ -11,9 +11,9 @@
     display: inline-block;
 }
 
-.detailsModal .content img {
+.detailsModal .content img, .detailsModal .content video {
     image-orientation: from-image;
-    border: 1px solid gray;
+    /*border: 1px solid #252525;*/
     height: 780px;
     max-width:100%;
 }
@@ -46,6 +46,9 @@
     text-align: center;
 }
 
+audio{
+    margin: 375px;
+}
 
 @media screen and (max-width: 1366px) {
     .detailsModal{

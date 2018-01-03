@@ -6,6 +6,7 @@ const db=require('./config/database').connect();
 const connectFlash=require('connect-flash');
 const expressSession=require('express-session');
 const passport=require('passport');
+const helpers=require('handlebars-helpers');
 
 const app=express();
 
@@ -17,7 +18,11 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'public')));
 
 app.engine('handlebars', exphbs({
-    defaultLayout: 'main'}));
+    defaultLayout: 'main',
+    helpers:{
+        compare:helpers.comparison()
+    }
+}));
 app.set('view engine', 'handlebars');
 
 app.use(expressSession({

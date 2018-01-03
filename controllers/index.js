@@ -9,7 +9,9 @@ router.get('/',authenticated, (req, res) => {
         fileModel.findFiles(req.user.email, null, (error, files) => {
             for (key in files) {
                 if (files[key].filename.length > 19) {
-                    files[key].filename = `${files[key].filename.substring(0, 19)}...`;
+                    files[key].filenameShort = `${files[key].filename.substring(0, 15)}...`;
+                } else{
+                    files[key].filenameShort = files[key].filename;
                 }
             }
             for (key in folders) {

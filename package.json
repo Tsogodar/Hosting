@@ -8,7 +8,8 @@
     "npm": "5.5.1"
   },
   "scripts": {
-    "start": "node ./config/server"
+    "start": "node ./config/server",
+    "server":"nodemon ./config/server.js"
   },
   "keywords": [],
   "author": "Marcin Gryczon",

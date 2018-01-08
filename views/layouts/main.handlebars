@@ -17,6 +17,7 @@
     <script src="/js/helpers/shareMessage.js"></script>
     <script src="/js/helpers/preloader.js"></script>
     <script src="/js/helpers/changeSwitchs.js"></script>
+    <script src="/js/helpers/arrows.js"></script>
     <link rel="stylesheet" href="/css/parallax.css">
     <link rel="stylesheet" href="/css/partials/navbar.css">
     <link rel="stylesheet" href="/css/form/login_register.css">
@@ -45,7 +46,11 @@
 {{>_footer}}
 <script>
     $(document).ready(function () {
-        $('.modal').modal();
+        $('.modal').modal({
+            dismissible: false,
+            inDuration: 0,
+            outDuration: 0
+        });
         $('ul.tabs').tabs();
     });
 </script>

@@ -6,7 +6,7 @@
 
 .detailsModal .content {
     width: 65%;
-    margin: 10px 0;
+    margin: 10px 100px;
     text-align: center;
     display: inline-block;
 }
@@ -34,11 +34,33 @@
 }
 
 .detailsModal .arrow{
-    display: inline-block;
+    position: absolute;
     text-align: center;
     width: 2%;
-    margin: 10px;
-    font-size: 50pt;
+}
+
+.arrRight{
+    margin-top: -24%;
+    margin-left: 70%;
+}
+
+.arrLeft{
+    margin-top: 22%;
+}
+
+.arrow i{
+    font-size: 80px;
+    cursor: pointer;
+}
+
+.arrow i:hover{
+    color: orange;
+
+}
+
+.closeIcon{
+    display: block;
+    text-align: right;
 }
 
 .detailsModal .menu{

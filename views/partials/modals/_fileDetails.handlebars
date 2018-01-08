@@ -1,46 +1,55 @@
 <div id="{{_id}}" class="modal detailsModal">
     <div class="modal-dialog">
         <div class="modal-content">
+            <i class="material-icons closeIcon modal-close")>close</i>
             <div class="modal-body">
-                <div class="arrow">
-                    <i class="material-icons">keyboard_arrow_left</i>
-                </div>
+                {{#eq count 1}}
+                {{else}}
+                    <div class="arrow arrLeft">
+                        <i class="material-icons">keyboard_arrow_left</i>
+                    </div>
+                {{/eq}}
                 <div class="content">
                     {{#eq contentType 'image/jpeg'}}
+                        <img src="/file/load/{{_id}}">
+                    {{else eq contentType 'image/png'}}
                         <img src="/file/load/{{_id}}">
                     {{else eq contentType 'video/mp4'}}
                         <video src="/file/load/{{_id}}" controls></video>
                     {{else eq contentType 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'}}
-                        <img  src="/img/icons/doc.svg">
+                        <img src="/img/icons/doc.svg">
                     {{else eq contentType 'application/x-msdownload'}}
-                        <img  src="/img/icons/exe.svg">
+                        <img src="/img/icons/exe.svg">
                     {{else eq contentType 'audio/mpeg'}}
                         <audio controls>
                             <source src="/file/load/{{_id}}" type="audio/mpeg">
                         </audio>
                     {{else eq contentType 'application/pdf'}}
-                        <img  src="/img/icons/pdf.svg">
+                        <img src="/img/icons/pdf.svg">
                     {{else eq contentType 'text/plain'}}
-                        <img  src="/img/icons/txt.svg">
+                        <img src="/img/icons/txt.svg">
                     {{else eq contentType 'application/octet-stream'}}
-                        <img  src="/img/icons/iso.svg">
+                        <img src="/img/icons/iso.svg">
                     {{else eq contentType 'text/html'}}
-                        <img  src="/img/icons/html.svg">
+                        <img src="/img/icons/html.svg">
                     {{else eq contentType 'application/json'}}
-                        <img  src="/img/icons/json-file.svg">
+                        <img src="/img/icons/json-file.svg">
                     {{else eq contentType 'application/vnd.openxmlformats-officedocument.presentationml.presentation'}}
-                        <img  src="/img/icons/ppt.svg">
+                        <img src="/img/icons/ppt.svg">
                     {{else eq contentType 'application/x-javascript'}}
-                        <img  src="/img/icons/javascript.svg">
+                        <img src="/img/icons/javascript.svg">
                     {{else eq contentType 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}}
-                        <img  src="/img/icons/xls.svg">
+                        <img src="/img/icons/xls.svg">
                     {{else eq contentType 'text/css'}}
-                        <img  src="/img/icons/css.svg">
+                        <img src="/img/icons/css.svg">
                     {{/eq}}
                 </div>
-                <div class="arrow">
-                    <i class="material-icons">keyboard_arrow_right</i>
-                </div>
+                {{#eq count 1}}
+                {{else}}
+                    <div class="arrow arrRight">
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </div>
+                {{/eq}}
                 <div class="details">
                     <table class="bordered">
                         <tr>

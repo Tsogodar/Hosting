@@ -82,7 +82,7 @@ module.exports = {
             $set: {
                 email: newEmail
             }
-        }, (emailChanged)=>{
+        }, (emailChanged)=> {
             const fileModel = require('./File');
             fileModel.gfs.files.update({
                 'metadata.owner.email': oldEmail,
@@ -90,8 +90,18 @@ module.exports = {
                 $set: {
                     'metadata.owner.email': newEmail
                 }
-            }).then(callback)
+            },callback)
         });
+    },
+
+    updatePassword:(email,newPass,callback)=>{
+        User.update({
+            email: email
+        }, {
+            $set: {
+                password: newPass
+            }
+        }, callback);
     },
 
     updateTheme: (email, newTheme, switchValue, callback) => {

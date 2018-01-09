@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {authenticated} = require('../helpers/authenticated');
 const {check, validationResult} = require('express-validator/check');
+const bcryptjs = require('bcryptjs');
 const userModel = require('../models/User');
 
 router.get('/', authenticated, (req, res) => {
@@ -73,5 +74,53 @@ router.post('/updateTheme', authenticated, (req, res) => {
     });
 });
 
+router.post('/updatePass', authenticated, [
+    check('passwordNewInput').isLength({min: 1}).matches(/\w/).custom((value,{req, loc, path}) => {
+        if (value !== req.body.passwordConfirmNewInput) {
+            throw new Error("dontMatch");
+        } else {
+            return value;
+        }
+    })
+], (req, res) => {
+    const errors = validationResult(req);
+    if (errors.isEmpty()) {
+        let pass={
+            old:req.body.passwordInput,
+            newPass:req.body.passwordNewInput,
+            newPassConfirm:req.body.passwordConfirmNewInput
+        };
+        userModel.checkIfExists(req.user.email, (user) => {
+            if(bcryptjs.compareSync(pass.old,user.password)){
+                bcryptjs.genSalt(10, (err, salt) => {
+                    bcryptjs.hash(pass.newPass, salt, (err, hash) => {
+                        if (err) {
+                            res.send(err);
+                        } else {
+                            userModel.updatePassword(req.user.email,hash,(update=>{
+                                req.flash('change_msg', `Pomyślnie zapisano`);
+                                res.redirect('/account/#account')
+                            }))
+                        }
+                    });
+                })
+            } else{
+                req.flash('error', 'Obecne hasło jest błędne');
+                res.redirect('/account/#account');
+            }
+        })
+    } else {
+        switch(errors.mapped().passwordNewInput.msg){
+            case 'Invalid value':
+                req.flash('error', 'Hasło nie może zawierać wyłącznie znaku spacji');
+                res.redirect('/account/#account');
+                break;
+            case 'dontMatch':
+            req.flash('error', 'Hasła muszą być identyczne');
+            res.redirect('/account/#account');
+            break;
+        }
+    }
+});
 
 module.exports = router;

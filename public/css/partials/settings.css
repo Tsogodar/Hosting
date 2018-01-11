@@ -16,4 +16,13 @@
 
 .formsTitle{
     vertical-align: top;
+    width: 30%;
+}
+
+.noResource{
+    text-align: center;
+}
+
+.name{
+    width:30%;
 }

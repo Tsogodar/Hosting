@@ -35,7 +35,7 @@ module.exports = {
                 }, {
                     $set: {
                         'shared': true,
-                        'sharedDate': Date.now()
+                        'sharedDate': moment().format('D MMMM YYYY,HH:mm:ss'),
                     }
                 }).then(callback)
             }
@@ -98,5 +98,21 @@ module.exports = {
             _id: mongoose.Types.ObjectId(resourceId),
             'metadata.shared': true,
         }).toArray(callback);
+    },
+
+    //find files for account share sett
+    shareSettFiles: (email,callback) => {
+        fileModel.gfs.files.find({
+            'metadata.owner.email': email,
+            'metadata.shared': true,
+        }).toArray(callback);
+    },
+
+    //find folders for account share sett
+    shareSettFolders: (email,callback) => {
+        folderModel.Folder.find({
+            owner: email,
+            shared: true,
+        }).then(callback);
     },
 };

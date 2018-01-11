@@ -4,8 +4,8 @@
 <div class="settings">
     <div class="col s12">
         <ul class="tabs">
-            <li class="tab col s3"><a class="active" href="#account">Konto</a></li>
-            <li class="tab col s3"><a href="#shared">Udostępnione</a></li>
+            <li class="tab col s3"><a href="#account">Konto</a></li>
+            <li class="tab col s3"><a class="active" href="#shared">Udostępnione</a></li>
             <li class="tab col s3 "><a href="#stats">Statystyki</a></li>
             <li class="tab col s3"><a href="#remove">Usunięcie</a></li>
         </ul>
@@ -100,7 +100,8 @@
                                                 <form class="updateTheme" method="post" action="/account/updateTheme">
                                                     <div class="switch">
                                                         <label>
-                                                            <input type="checkbox" name="themeSwitch" {{user.config.theme.dark.value}}>
+                                                            <input type="checkbox"
+                                                                   name="themeSwitch" {{user.config.theme.dark.value}}>
                                                             <span class="lever"></span>
                                                         </label>
                                                     </div>
@@ -131,34 +132,118 @@
                     </div>
                 </div>
             </div>
-            <div id="shared" class="col s12">Test 2</div>
-            <div id="stats" class="col s12">
-                <table class="border">
-                    {{!--{{#each user}}--}}
-                    <tr>
-                        <td>Zarejestrowano:</td>
-                        <td>{{user.registered}}</td>
-                    </tr>
-                    <tr>
-                        <td>Imię i nazwisko</td>
-                        <td>{{user.name}} {{user.surname}}</td>
-                    </tr>
-                    {{!--{{/each}}--}}
-                </table>
-            </div>
-            <div id="remove" class="col s12">
-                <table class="border">
-                    <tr>
-                        <td>Usuń konto:</td>
-                        <td>Bezpowrotnie usuwa konto</td>
-                    </tr>
-                    <tr>
-                        <td>Wyczyść konto</td>
-                        <td>Bezpowrotnie usuwa wszystkie pliki</td>
-                    </tr>
-                </table>
+        </div>
+    </div>
+    <div id="shared" class="col s12">
+        <div class="col s6">
+            <div id="profile" class="col s12">
+                <div class="container">
+                    <div class="col s6">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td class="formsTitle">
+                                    <h5>Foldery</h5>
+                                    <p>Lista udostępnionych folderów</p>
+                                </td>
+                                <td>
+                                    {{#if folders}}
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th class="name">Nazwa</th>
+                                                <th>Udostępniono</th>
+                                                <th>Zasób</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            {{#each folders}}
+                                                <tr>
+                                                    <td>
+                                                        <a href="/folder/{{_id}}">{{name}}</a>
+                                                    </td>
+                                                    <td>
+                                                        {{sharedDate}}
+                                                    </td>
+                                                    <td>
+                                                        <a href="/shared/{{_id}}">Link</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="/shared/unshare/{{_id}}">Anuluj</a>
+                                                    </td>
+                                                </tr>
+                                            {{/each}}
+                                        </table>
+                                    {{else}}
+                                        <h4 class="noResource">Nie udostępniasz folderów</h4>
+                                    {{/if}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td class="formsTitle">
+                                    <h5>Pliki</h5>
+                                    <p>Lista udostępnionych folderów</p>
+                                </td>
+                                <td>
+                                    {{#if files}}
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th class="name">Nazwa</th>
+                                                <th>Udostępniono</th>
+                                                <th>Zasób</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            {{#each files}}
+                                                <tr>
+                                                    <td>
+                                                        <a href="/folder/{{_id}}">{{filename}}</a>
+                                                    </td>
+                                                    <td>
+                                                        {{metadata.sharedDate}}
+                                                    </td>
+                                                    <td>
+                                                        <a href="/shared/{{_id}}">Link</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="/shared/unshare/{{_id}}">Anuluj</a>
+                                                    </td>
+                                                </tr>
+                                            {{/each}}
+                                        </table>
+                                    {{else}}
+                                        <h4 class="noResource">Nie udostępniasz bezpośrednio plików</h4>
+                                    {{/if}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <div id="stats" class="col s12">
+
+    </div>
+    <div id="remove" class="col s12">
+        <table class="border">
+            <tr>
+                <td>Usuń konto:</td>
+                <td>Bezpowrotnie usuwa konto</td>
+            </tr>
+            <tr>
+                <td>Wyczyść konto</td>
+                <td>Bezpowrotnie usuwa wszystkie pliki</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
 </div>
 <script src="/js/helpers/changeSwitch.js"></script>

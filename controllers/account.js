@@ -1,13 +1,20 @@
 const express = require('express');
 const router = express.Router();
+const shareModel = require('../models/Share');
 const {authenticated} = require('../helpers/authenticated');
 const {check, validationResult} = require('express-validator/check');
 const bcryptjs = require('bcryptjs');
 const userModel = require('../models/User');
 
 router.get('/', authenticated, (req, res) => {
-    res.render('account/settings', {
-        user: req.user
+    shareModel.shareSettFolders(req.user.email, (folders) => {
+        shareModel.shareSettFiles(req.user.email, (error, files) => {
+            res.render('account/settings', {
+                files:files,
+                folders:folders,
+                user: req.user
+            })
+        })
     })
 });
 

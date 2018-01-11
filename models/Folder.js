@@ -16,7 +16,7 @@ const Folder = module.exports = mongoose.model('folder', FolderSchema);
 module.exports = {
 
     //model instance
-    Folder:Folder,
+    Folder: Folder,
 
     //add new folder
     addFolder: (newFolder, callback) => {
@@ -121,14 +121,29 @@ module.exports = {
 
     //remove folder and subfolders
     removeFolder: (folderId, callback) => {
+        let fileModel = require('./File');
         Folder.find({parent: folderId}).then((childrens) => {
                 childrens.forEach((child) => {
                     module.exports.removeFolder(child._id)
                 });
                 childrens.forEach((child) => {
                     Folder.remove({_id: child._id});
+                    fileModel.gfs.files.find({'metadata.parent': child._id.toString()}, {_id: 1}).toArray((err, files) => {
+                        files.forEach((file) => {
+                            fileModel.gfs.remove({
+                                _id: file._id
+                            });
+                        })
+                    })
                 });
-                Folder.remove({_id: folderId}).then(callback)
+                fileModel.gfs.files.find({'metadata.parent': folderId.toString()}, {_id: 1}).toArray((err, files) => {
+                    files.forEach((file) => {
+                        fileModel.gfs.remove({
+                            _id: file._id
+                        });
+                    })
+                });
+            Folder.remove({_id: folderId}).then(callback)
             }
         )
     },
@@ -161,7 +176,6 @@ module.exports = {
             });
         });
     },
-
 
 
     //xhr call via context menu

@@ -1,0 +1,88 @@
+<div id="profile">
+    <div class="container">
+        <table>
+            <tbody>
+            <tr>
+                <td class="formsTitle">
+                    <h5>Foldery</h5>
+                    <p>Lista udostępnionych folderów</p>
+                </td>
+                <td>
+                    {{#if folders}}
+                        <table>
+                            <thead>
+                            <tr>
+                                <th class="name">Nazwa</th>
+                                <th>Udostępniono</th>
+                                <th>Zasób</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            {{#each folders}}
+                                <tr>
+                                    <td>
+                                        <a href="/folder/{{_id}}">{{name}}</a>
+                                    </td>
+                                    <td>
+                                        {{sharedDate}}
+                                    </td>
+                                    <td>
+                                        <a href="/shared/{{_id}}">Link</a>
+                                    </td>
+                                    <td>
+                                        <a href="/shared/unshare/{{_id}}">Anuluj</a>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </table>
+                    {{else}}
+                        <h4 class="noResource">Nie udostępniasz folderów</h4>
+                    {{/if}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table>
+            <tbody>
+            <tr>
+                <td class="formsTitle">
+                    <h5>Pliki</h5>
+                    <p>Lista udostępnionych folderów</p>
+                </td>
+                <td>
+                    {{#if files}}
+                        <table>
+                            <thead>
+                            <tr>
+                                <th class="name">Nazwa</th>
+                                <th>Udostępniono</th>
+                                <th>Zasób</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            {{#each files}}
+                                <tr>
+                                    <td>
+                                        {{filename}}
+                                    </td>
+                                    <td>
+                                        {{metadata.sharedDate}}
+                                    </td>
+                                    <td>
+                                        <a href="/shared/{{_id}}">Link</a>
+                                    </td>
+                                    <td>
+                                        <a href="/shared/unshare/{{_id}}">Anuluj</a>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </table>
+                    {{else}}
+                        <h4 class="noResource">Nie udostępniasz bezpośrednio plików</h4>
+                    {{/if}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

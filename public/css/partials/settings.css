@@ -2,7 +2,7 @@
     padding: 1%;
 }
 
-#profile{
+#profile,#shared,#stats,#remove{
     margin-top: 2%;
 }
 
@@ -25,4 +25,13 @@
 
 .name{
     width:30%;
+}
+
+.defaults{
+    width: 56%;
+    margin-left: 3%;
+}
+
+.forms{
+    width: 45%;
 }

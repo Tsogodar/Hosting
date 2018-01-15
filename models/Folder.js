@@ -100,21 +100,32 @@ module.exports = {
             Folder.find({
                 _id: moveTo
             }).then((folder2) => {
-                module.exports.folderCopies(folder2[0].name, folder2[0].parent, (copies => {
-                    if (copies.length === 1) {
-                        module.exports.resetCopies(folder2[0].name);
-                    } else {
-                        Folder.update({
-                                _id: moveTo
-                            }, {
-                                $set: {
-                                    copies: copies.length,
+                if(folder2.length===0){
+                    const fileModel=require('./File');
+                    fileModel.gfs.files.update({
+                        _id: mongoose.Types.ObjectId(moveTo)
+                    }, {
+                        $set: {
+                            'metadata.parent': movedId
+                        }
+                    }).then(callback);
+                } else {
+                    module.exports.folderCopies(folder2[0].name, folder2[0].parent, (copies => {
+                        if (copies.length === 1) {
+                            module.exports.resetCopies(folder2[0].name);
+                        } else {
+                            Folder.update({
+                                    _id: moveTo
+                                }, {
+                                    $set: {
+                                        copies: copies.length,
+                                    }
+                                }, (updated) => {
                                 }
-                            }, (updated) => {
-                            }
-                        )
-                    }
-                }))
+                            )
+                        }
+                    }))
+                }
             });
         }), callback)
     },

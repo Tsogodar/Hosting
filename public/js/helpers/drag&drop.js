@@ -11,14 +11,14 @@ $(document).ready(function () {
         tolerance: 'pointer',
         drop: function (event, ui) {
             const droppableId = $(this).find('span')[0].className;
-            const draggableId = ui.draggable[0].childNodes[5]['className'];
+            const draggableId = ui.draggable[0].lastElementChild.className;
             $.ajax({
                 type: "POST",
                 url: `/folder/move/${droppableId}/${draggableId}`,
                 success: function (response) {
                     if (response == true) {
                         ui.draggable.remove();
-                        location.reload();
+                        // location.reload();
                     }
                 }
             })

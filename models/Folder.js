@@ -143,7 +143,7 @@ module.exports = {
                         });
                     })
                 });
-            Folder.remove({_id: folderId}).then(callback)
+                Folder.remove({_id: folderId}).then(callback)
             }
         )
     },
@@ -177,6 +177,36 @@ module.exports = {
         });
     },
 
+    //purge account
+
+    purge: (req, res, email) => {
+        let fileModel = require('./File');
+        module.exports.findAllFolders(email, (folders) => {
+            if (folders.length === 0) {
+                fileModel.findFiles(email, null, (error, files) => {
+                    files.forEach((file) => {
+                        fileModel.removeFile(file._id, email)
+                    })
+                    req.flash('change_msg', `Konto wyczyszczono`);
+                    res.redirect('/account/#remove')
+                })
+            } else {
+                folders.forEach((folder) => {
+                    module.exports.removeFolder(folder._id, (deleted) => {
+                        if (deleted) {
+                            fileModel.findFiles(email, null, (error, files) => {
+                                files.forEach((file) => {
+                                    fileModel.removeFile(file._id, email)
+                                })
+                                req.flash('change_msg', `Konto wyczyszczono`);
+                                res.redirect('/account/#remove')
+                            })
+                        }
+                    });
+                })
+            }
+        })
+    },
 
     //xhr call via context menu
     xhr: (folderId, callback) => {

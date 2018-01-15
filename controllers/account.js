@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const shareModel = require('../models/Share');
+const folderModel = require('../models/Folder');
 const {authenticated} = require('../helpers/authenticated');
 const {check, validationResult} = require('express-validator/check');
 const bcryptjs = require('bcryptjs');
@@ -10,8 +11,8 @@ router.get('/', authenticated, (req, res) => {
     shareModel.shareSettFolders(req.user.email, (folders) => {
         shareModel.shareSettFiles(req.user.email, (error, files) => {
             res.render('account/settings', {
-                files:files,
-                folders:folders,
+                files: files,
+                folders: folders,
                 user: req.user
             })
         })
@@ -82,7 +83,7 @@ router.post('/updateTheme', authenticated, (req, res) => {
 });
 
 router.post('/updatePass', authenticated, [
-    check('passwordNewInput').isLength({min: 1}).matches(/\w/).custom((value,{req, loc, path}) => {
+    check('passwordNewInput').isLength({min: 1}).matches(/\w/).custom((value, {req, loc, path}) => {
         if (value !== req.body.passwordConfirmNewInput) {
             throw new Error("dontMatch");
         } else {
@@ -92,42 +93,49 @@ router.post('/updatePass', authenticated, [
 ], (req, res) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
-        let pass={
-            old:req.body.passwordInput,
-            newPass:req.body.passwordNewInput,
-            newPassConfirm:req.body.passwordConfirmNewInput
+        let pass = {
+            old: req.body.passwordInput,
+            newPass: req.body.passwordNewInput,
+            newPassConfirm: req.body.passwordConfirmNewInput
         };
         userModel.checkIfExists(req.user.email, (user) => {
-            if(bcryptjs.compareSync(pass.old,user.password)){
+            if (bcryptjs.compareSync(pass.old, user.password)) {
                 bcryptjs.genSalt(10, (err, salt) => {
                     bcryptjs.hash(pass.newPass, salt, (err, hash) => {
                         if (err) {
                             res.send(err);
                         } else {
-                            userModel.updatePassword(req.user.email,hash,(update=>{
+                            userModel.updatePassword(req.user.email, hash, (update => {
                                 req.flash('change_msg', `Pomyślnie zapisano`);
                                 res.redirect('/account/#account')
                             }))
                         }
                     });
                 })
-            } else{
+            } else {
                 req.flash('error', 'Obecne hasło jest błędne');
                 res.redirect('/account/#account');
             }
         })
     } else {
-        switch(errors.mapped().passwordNewInput.msg){
+        switch (errors.mapped().passwordNewInput.msg) {
             case 'Invalid value':
                 req.flash('error', 'Hasło nie może zawierać wyłącznie znaku spacji');
                 res.redirect('/account/#account');
                 break;
             case 'dontMatch':
-            req.flash('error', 'Hasła muszą być identyczne');
-            res.redirect('/account/#account');
-            break;
+                req.flash('error', 'Hasła muszą być identyczne');
+                res.redirect('/account/#account');
+                break;
         }
     }
 });
+
+//purge
+router.get('/purge', authenticated, (req, res) => {
+    folderModel.purge(req,res,req.user.email)
+});
+
+//del account
 
 module.exports = router;

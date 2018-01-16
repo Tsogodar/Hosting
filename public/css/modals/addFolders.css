@@ -1,5 +1,13 @@
-#addFolderModal, #changeFolderNameModal,.changeFileNameModal{
+#addFolderModal, #changeFolderNameModal,.changeFileNameModal,#moveFolderModal{
     width: 25%;
+}
+
+#moveFolderModal{
+    display: none;
+}
+
+#moveFolderModal select{
+    display: block;
 }
 
 .row {

@@ -1,21 +1,12 @@
-<div class="modal fade" id="moveFolderModal" tabindex="-1" role="dialog"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Przenieś do</h5>
+<div id="moveFolderModal" class="move">
+    <div class="modal-content">
+        <h5 class="modal-title" id="exampleModalLabel">Przenieś do</h5>
+        <form method="post" action="/folder/destination/">
+            <select name="destination" class="select"></select>
+            <div class="modal-footer">
+                <button type="button" class="btn modal-close">Anuluj</button>
+                <input type="submit" class="btn btn-primary" value="Ok">
             </div>
-            <div class="modal-body">
-
-                <form method="post" action="/folder/destination/">
-                    <select name="destination" class="form-control">
-                    </select>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
-                        <input type="submit" class="btn btn-primary" value="Ok">
-                    </div>
-            </form>
-            </div>
-        </div>
+        </form>
     </div>
 </div>

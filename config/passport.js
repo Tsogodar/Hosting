@@ -37,11 +37,11 @@ module.exports = (passport) => {
         });
     });
     passport.use(new GoogleStrategy({
-            // clientID:process.env.googleOauth2ClientIdentity,
-            // clientSecret:process.env.googleOauth2SecretKey,
+            clientID:process.env.googleOauth2ClientIdentity,
+            clientSecret:process.env.googleOauth2SecretKey,
 
-            clientID: '1021882735911-tn9q6de9l35614hdaq52me0jtas47gr7.apps.googleusercontent.com',
-            clientSecret: 'qXKLJnyi8BjMdM8D3mjRAqgd',
+            // clientID: '1021882735911-tn9q6de9l35614hdaq52me0jtas47gr7.apps.googleusercontent.com',
+            // clientSecret: 'qXKLJnyi8BjMdM8D3mjRAqgd',
             callbackURL: '/auth/login/google/callback',
             proxy: true
         }, (accessToken, refreshToken, profile, done) => {

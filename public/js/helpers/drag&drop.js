@@ -18,7 +18,7 @@ $(document).ready(function () {
                 success: function (response) {
                     if (response == true) {
                         ui.draggable.remove();
-                        // location.reload();
+                        location.reload();
                     }
                 }
             })
